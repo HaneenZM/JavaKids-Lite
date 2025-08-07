@@ -1,0 +1,48 @@
+datasource db {
+  provider = "sqlite"
+  // Wasp requires that the url is set to the DATABASE_URL environment variable.
+  url      = env("DATABASE_URL")
+}
+
+// Wasp requires the `prisma-client-js` generator to be present.
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+    id              Int         @id @default(autoincrement())
+    age             Int
+    role            String
+    lessons         Lesson[]
+    tutorSessions   Session[]   @relation("TutorSessions")
+    studentSessions Session[]   @relation("StudentSessions")
+    microtasks      Microtask[]
+}
+
+model Lesson {
+    id          Int    @id @default(autoincrement())
+    title       String
+    description String
+    progress    Int
+    user        User   @relation(fields: [userId], references: [id])
+    userId      Int
+}
+
+model Session {
+    id        Int      @id @default(autoincrement())
+    tutor     User     @relation("TutorSessions", fields: [tutorId], references: [id])
+    tutorId   Int
+    student   User     @relation("StudentSessions", fields: [studentId], references: [id])
+    studentId Int
+    date      DateTime
+    type      String
+}
+
+model Microtask {
+    id           Int    @id @default(autoincrement())
+    title        String
+    description  String
+    reward       Int
+    assignedTo   User?  @relation(fields: [assignedToId], references: [id])
+    assignedToId Int?
+}

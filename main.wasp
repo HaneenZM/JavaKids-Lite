@@ -1,0 +1,81 @@
+app JavaKids {
+  wasp: {
+    version: "^0.17.1"
+  },
+  title: "JavaKids",
+  client: {
+    rootComponent: import { Layout } from "@src/Layout.jsx",
+  },
+  auth: {
+    userEntity: User,
+    methods: {
+      usernameAndPassword: {}
+    },
+    onAuthFailedRedirectTo: "/login",
+    onAuthSucceededRedirectTo: "/"
+  },
+}
+
+route LoginRoute { path: "/login", to: LoginPage }
+page LoginPage {
+  component: import Login from "@src/pages/auth/Login.jsx"
+}
+
+route SignupRoute { path: "/signup", to: SignupPage }
+page SignupPage {
+  component: import Signup from "@src/pages/auth/Signup.jsx"
+}
+
+action createLesson {
+  fn: import { createLesson } from "@src/actions.js",
+  entities: [Lesson]
+}
+
+action bookSession {
+  fn: import { bookSession } from "@src/actions.js",
+  entities: [Session, User]
+}
+
+action assignMicrotask {
+  fn: import { assignMicrotask } from "@src/actions.js",
+  entities: [Microtask, User]
+}
+
+query getLessons {
+  fn: import { getLessons } from "@src/queries.js",
+  entities: [Lesson]
+}
+
+query getSessions {
+  fn: import { getSessions } from "@src/queries.js",
+  entities: [Session]
+}
+
+query getMicrotasks {
+  fn: import { getMicrotasks } from "@src/queries.js",
+  entities: [Microtask]
+}
+
+route DashboardRoute { path: "/", to: DashboardPage }
+page DashboardPage {
+  component: import Dashboard from "@src/pages/Dashboard.jsx",
+  authRequired: true
+}
+
+route LessonRoute { path: "/lesson/:lessonId", to: LessonPage }
+page LessonPage {
+  component: import LessonPage from "@src/pages/Lesson.jsx",
+  authRequired: true
+}
+
+route SessionRoute { path: "/session/:sessionId", to: SessionPage }
+page SessionPage {
+  component: import SessionPage from "@src/pages/Session.jsx",
+  authRequired: true
+}
+
+route MicrotaskRoute { path: "/microtask/:microtaskId", to: MicrotaskPage }
+page MicrotaskPage {
+  component: import MicrotaskPage from "@src/pages/Microtask.jsx",
+  authRequired: true
+}
