@@ -1,0 +1,34 @@
+# Contributing to JavaKids Lite
+
+Thank you for your interest in contributing to JavaKids Lite.
+
+This project is in the early prototype phase and contributions are limited until the core structure is fully defined.  
+However, feedback and small improvements are welcome.
+
+## How to Contribute
+
+### 1. Open an Issue
+If you want to suggest a feature or report a bug, please create a GitHub Issue with:
+- a clear title  
+- a short description  
+- steps to reproduce the issue if relevant  
+
+### 2. Pull Requests
+Pull requests may be accepted for:
+- small code improvements  
+- UI enhancements  
+- documentation fixes  
+
+Please keep pull requests small and focused so they can be reviewed easily.
+
+### 3. Style
+There is no strict coding style yet, but please:
+- keep code readable  
+- use clear names  
+- avoid unnecessary complexity  
+
+### 4. Communication
+This project is developed by a single founder so response times may vary.  
+All valid contributions will be reviewed.
+
+Thank you for helping improve JavaKids Lite.
